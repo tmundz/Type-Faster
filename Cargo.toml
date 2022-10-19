@@ -1,0 +1,10 @@
+[package]
+name = "type-fast"
+version = "0.1.0"
+edition = "2021"
+author = "Travis"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tui = "0.19"
+crossterm = "0.25.0"
