@@ -1,3 +1,7 @@
+mod app;
+
+use app::{test};
+
 use std::{io, thread, time::Duration};
 use tui::{
     backend::CrosstermBackend,
@@ -40,6 +44,8 @@ fn main() -> Result<(), io::Error> {
     )?;
 
     terminal.show_cursor()?;
+    test();
     Ok(())
+
     
 }
