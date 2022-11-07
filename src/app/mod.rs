@@ -1,10 +1,10 @@
 /* equation to solve for WPM and CPS
- WPM = # of words/time 
+ WPM = # of words/time
  CPS = # of char/time in seconds
- typing accuracy = 
+ typing accuracy =
 
  Need to get words/phrases from sentences and display
- them in the terminal 
+ them in the terminal
  compare keystroke with char in phrase seperate by spaces
 
  BASIC FUNCTIONAILTY
@@ -15,16 +15,8 @@
  allow users to type
  compare each keystroke with the letter of the phrases
  when all words have been typed and it matches completly stop time
- display accuracy and wpm  
+ display accuracy and wpm
 
 */
 
-pub fn test() -> i32{
-    
-
-    println!("Hello");
-
-    return 0;
-    
-}
-
+pub fn test() -> i32 {}
