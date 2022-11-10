@@ -13,20 +13,67 @@ use tui::Frame;
 
 pub fn render<B: Backend>(rect: &mut Frame<B>) {
     let size = rect.size();
-    let title = draw_title();
     // Vertical layout
-    let chunks = Layout::default()
-        .direction(Direction::Vertical)
-        .constraints([Constraint::Length(3)].as_ref())
+    let padding_chunk = Layout::default()
+        .direction(Direction::Horizontal)
+        .constraints(
+            [
+                Constraint::Percentage(25),
+                Constraint::Percentage(50),
+                Constraint::Percentage(25),
+            ]
+            .as_ref(),
+        )
         .split(size);
 
-    // Title
+    let main_chunk = Layout::default()
+        .direction(Direction::Vertical)
+        .constraints(
+            [
+                Constraint::Percentage(50),
+                Constraint::Length(3),
+                Constraint::Length(3),
+                Constraint::Min(30),
+            ]
+            .as_ref(),
+        )
+        .split(padding_chunk[1]);
 
-    rect.render_widget(title, chunks[0]);
+    let chunks2 = Layout::default()
+        .direction(Direction::Horizontal)
+        .constraints([Constraint::Min(50), Constraint::Percentage(66)].as_ref())
+        .split(main_chunk[0]);
+    //rect.render_widget(title, chunks[0]);
+    draw_main(rect, main_chunk[1]);
+    draw_upper(rect, chunks2[1]);
+    draw_lower(rect, chunks2[0]);
 }
 
-fn draw_title<'a>() -> Paragraph<'a> {
-    return Paragraph::new("Plop with TUI")
+fn draw_main<B: Backend>(rect: &mut Frame<B>, chunk: Rect) {
+    let widget = Paragraph::new("Plop with TUI")
         .alignment(Alignment::Center)
         .block(Block::default().borders(Borders::ALL));
+
+    rect.render_widget(widget, chunk)
+}
+
+fn draw_upper<B: Backend>(rect: &mut Frame<B>, chunk: Rect) {
+    let widget = Paragraph::new("Upper")
+        .alignment(Alignment::Center)
+        .block(Block::default().borders(Borders::ALL));
+
+    rect.render_widget(widget, chunk)
+}
+
+fn draw_lower<B: Backend>(rect: &mut Frame<B>, chunk: Rect) {
+    let padding_chunks = Layout::default()
+        .direction(Direction::Horizontal)
+        .constraints([Constraint::Min(30), Constraint::Percentage(66)])
+        .split(chunk);
+
+    let widget = Paragraph::new("Lower")
+        .alignment(Alignment::Center)
+        .block(Block::default().borders(Borders::ALL));
+
+    rect.render_widget(widget, padding_chunks[0])
 }
