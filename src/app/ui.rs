@@ -1,5 +1,6 @@
 /*
  * This view will control the tui
+ *
  * When a word gets completed then this will send the word as completed
  *
  */
@@ -41,8 +42,9 @@ pub fn render<B: Backend>(rect: &mut Frame<B>) {
 
     let chunks2 = Layout::default()
         .direction(Direction::Horizontal)
-        .constraints([Constraint::Min(50), Constraint::Percentage(66)].as_ref())
-        .split(main_chunk[0]);
+        .constraints([Constraint::Min(50), Constraint::Percentage(50)].as_ref())
+        .split(main_chunk[2]);
+
     //rect.render_widget(title, chunks[0]);
     draw_main(rect, main_chunk[1]);
     draw_upper(rect, chunks2[1]);
@@ -54,7 +56,7 @@ fn draw_main<B: Backend>(rect: &mut Frame<B>, chunk: Rect) {
         .alignment(Alignment::Center)
         .block(Block::default().borders(Borders::ALL));
 
-    rect.render_widget(widget, chunk)
+    rect.render_widget(widget, chunk);
 }
 
 fn draw_upper<B: Backend>(rect: &mut Frame<B>, chunk: Rect) {
@@ -62,18 +64,18 @@ fn draw_upper<B: Backend>(rect: &mut Frame<B>, chunk: Rect) {
         .alignment(Alignment::Center)
         .block(Block::default().borders(Borders::ALL));
 
-    rect.render_widget(widget, chunk)
+    rect.render_widget(widget, chunk);
 }
 
 fn draw_lower<B: Backend>(rect: &mut Frame<B>, chunk: Rect) {
     let padding_chunks = Layout::default()
         .direction(Direction::Horizontal)
-        .constraints([Constraint::Min(30), Constraint::Percentage(66)])
+        .constraints([Constraint::Min(30), Constraint::Percentage(70)])
         .split(chunk);
 
     let widget = Paragraph::new("Lower")
         .alignment(Alignment::Center)
         .block(Block::default().borders(Borders::ALL));
 
-    rect.render_widget(widget, padding_chunks[0])
+    rect.render_widget(widget, padding_chunks[1]);
 }

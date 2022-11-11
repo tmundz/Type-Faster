@@ -6,11 +6,12 @@ use std::{io, thread};
 use tui::backend::CrosstermBackend;
 use tui::Terminal;
 
+use crate::app::read;
 use crate::app::ui;
 use crate::app::App;
 pub mod app;
 
-pub fn start_ui(app: Rc<RefCell<App>>) -> Result<(), io::Error> {
+pub fn start_ui(_app: Rc<RefCell<App>>) -> Result<(), io::Error> {
     let stdout = io::stdout();
     crossterm::terminal::enable_raw_mode()?;
     let backend = CrosstermBackend::new(stdout);
@@ -25,4 +26,8 @@ pub fn start_ui(app: Rc<RefCell<App>>) -> Result<(), io::Error> {
     terminal.show_cursor()?;
 
     Ok(())
+}
+
+pub fn get_phrase() {
+    read::get_file();
 }

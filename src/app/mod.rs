@@ -19,6 +19,7 @@ display accuracy and wpm
 
    */
 
+pub mod read;
 pub mod ui;
 
 pub struct App {
