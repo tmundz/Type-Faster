@@ -29,5 +29,6 @@ pub fn start_ui(_app: Rc<RefCell<App>>) -> Result<(), io::Error> {
 }
 
 pub fn get_phrase() {
-    read::get_file();
+    let phrase_vec: Vec<String> = read::get_file();
+    println!("{:#?}", phrase_vec);
 }
