@@ -43,7 +43,7 @@ pub fn render<B: Backend>(rect: &mut Frame<B>, phrase: Vec<String>) {
     let chunks2 = Layout::default()
         .direction(Direction::Horizontal)
         .constraints([Constraint::Min(50), Constraint::Percentage(50)].as_ref())
-        .split(main_chunk[1]);
+        .split(main_chunk[2]);
 
     //rect.render_widget(title, chunks[0]);
     draw_phrase(rect, main_chunk[0], phrase);
@@ -71,12 +71,12 @@ fn draw_input<B: Backend>(rect: &mut Frame<B>, chunk: Rect) {
 fn draw_tracker<B: Backend>(rect: &mut Frame<B>, chunk: Rect) {
     let padding_chunks = Layout::default()
         .direction(Direction::Horizontal)
-        .constraints([Constraint::Min(40), Constraint::Percentage(70)])
+        .constraints([Constraint::Min(30), Constraint::Percentage(70)])
         .split(chunk);
 
     let widget = Paragraph::new("Lower")
         .alignment(Alignment::Center)
         .block(Block::default().borders(Borders::ALL));
 
-    rect.render_widget(widget, padding_chunks[0]);
+    rect.render_widget(widget, padding_chunks[1]);
 }

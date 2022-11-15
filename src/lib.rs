@@ -19,7 +19,7 @@ pub fn start_ui(_app: Rc<RefCell<App>>) -> Result<(), io::Error> {
 
     terminal.clear()?;
     terminal.hide_cursor()?;
-    terminal.draw(|rect| ui::render(rect))?;
+    terminal.draw(|rect| ui::render(rect, get_phrase()))?;
 
     thread::sleep(Duration::from_millis(5000));
     terminal.clear()?;
@@ -28,7 +28,8 @@ pub fn start_ui(_app: Rc<RefCell<App>>) -> Result<(), io::Error> {
     Ok(())
 }
 
-pub fn get_phrase() {
-    let phrase_vec: Vec<String> = read::get_file();
-    println!("{:#?}", phrase_vec);
+pub fn get_phrase() -> Vec<String> {
+    let phrase_vec: Vec<String> = read::get_phrase();
+    //    println!("{:#?}", phrase_vec);
+    phrase_vec
 }
