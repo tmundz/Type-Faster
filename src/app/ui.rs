@@ -19,9 +19,9 @@ pub fn render<B: Backend>(rect: &mut Frame<B>, phrase: Vec<String>) {
         .direction(Direction::Horizontal)
         .constraints(
             [
-                Constraint::Percentage(25),
-                Constraint::Percentage(50),
-                Constraint::Percentage(25),
+                Constraint::Percentage(10),
+                Constraint::Percentage(80),
+                Constraint::Percentage(10),
             ]
             .as_ref(),
         )
@@ -42,7 +42,7 @@ pub fn render<B: Backend>(rect: &mut Frame<B>, phrase: Vec<String>) {
 
     let chunks2 = Layout::default()
         .direction(Direction::Horizontal)
-        .constraints([Constraint::Min(50), Constraint::Percentage(50)].as_ref())
+        .constraints([Constraint::Percentage(50), Constraint::Length(3)].as_ref())
         .split(main_chunk[1]);
 
     //rect.render_widget(title, chunks[0]);
